@@ -10,9 +10,11 @@
   "author": "Oleg Statkevych",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^7.5.2",
     "nodemon": "^3.0.1"
   }
 }
