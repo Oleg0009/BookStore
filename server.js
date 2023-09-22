@@ -12,6 +12,7 @@ const mongoose = require('mongoose')
  
 const router = require('./router/router')
 const authorRouter = require('./router/authors')
+const bookRouter = require('./router/books')
 
 //Set engine for Views
 app.set('view engine', 'ejs')
@@ -36,6 +37,7 @@ db.once('open',()=>{console.log('Coneccted');})
 //Router connect
 app.use('/',router)
 app.use('/authors',authorRouter)
+app.use('/books',bookRouter)
 
 
 //listen server
