@@ -15,7 +15,7 @@
 </div>
 <div>
   <label for="publishedDate">Publish Date</label>
-  <input type="date" name="publishedDate" value="<%= book.publishDate !== null ? '' : book.publishDat.toISOString().split('T')[0] %>">
+  <input type="date" name="publishedDate" value="<%= book.publishDate !== null ? '' : book.publishedDate.toISOString().split('T')[0] %>">
   
   <label for="pageCount">Page Count</label>
   <input type="number" name="pageCount" value="<%= book.pageCount %>">
@@ -24,7 +24,7 @@
 
 <div>
   <label for="cover">Cover</label>
-  <input type="file" name="cover">
+  <input type="file" name="cover" class="filepond">
   
   <label for="description">Description</label>
   <textarea  name="description"><%= book.description %></textarea>
