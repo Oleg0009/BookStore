@@ -8,6 +8,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
  
 const router = require('./router/router')
@@ -21,6 +22,7 @@ app.set('views', __dirname + '/views')
 // Set parameters to use layouts
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
+app.use(methodOverride('_method'))
 
 //Static path for images + styles
 app.use(express.static('public'))
