@@ -89,8 +89,6 @@ router.put('/:id',async(req,res)=>{
   }
 })
 router.delete('/:id', async (req,res)=>{
-  console.log('DELETE')
-
   let author
   try {
     author = await Author.findById(req.params.id)
@@ -101,14 +99,11 @@ router.delete('/:id', async (req,res)=>{
       }else{
         res.redirect(`/authors/${author.id}`);
       }
-      return
+      return;
     }
-
-   
     await Author.findOneAndRemove(req.params.id);
     res.redirect(`/authors`);
   } catch (err) {  
-    console.log(err)
     if(author == null){
       res.redirect(`/`);
     }else{

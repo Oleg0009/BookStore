@@ -10,7 +10,9 @@
 <div>
   <% booksByAuthor.forEach(book=>{%>
     <% if(book.coverImagePath) {%>
+      <a href="/books/<%= book.id %>">
     <img width="100px" height="150px" src="<%= book.coverImagePath %>" alt="">
+  </a>
     <% } %>
     <% }) %>
 </div>

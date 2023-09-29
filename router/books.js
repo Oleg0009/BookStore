@@ -35,7 +35,15 @@ router.get('/', async (req,res)=>{
 
 
 router.get('/new', async (req,res)=>{
-  renderNewPage(res,new Book())
+  renderFormPage(res,new Book(),false,'new','Error creating book')
+})
+
+router.get('/:id', async (req,res)=>{
+  try{
+    const book = await Book.findById(req.params.id).populate('author').exec()
+    res.render('books/show', { book: book })
+  }
+  catch{}
 })
 
 
@@ -53,7 +61,56 @@ router.post('/', async (req,res)=>{
     res.redirect('books')
   }
   catch {
-    renderNewPage(res,book,true)
+    renderFormPage(res,book,true,'new','Error creating book')
+  }
+})
+
+
+
+router.get('/:id/edit',async (req,res)=>{
+  try{
+    const book = await Book.findById(req.params.id)
+    renderFormPage(res,book,true,'edit','Error editing book')
+  }
+  catch{
+    res.render('books')
+  }
+})
+
+
+router.put('/:id',async(req,res)=>{
+   let book
+  try {
+    book = await Book.findById(req.params.id)
+    book.title = req.body.title;
+    book.description=req.body.description;
+    book.publishedDate=new Date(req.body.publishedDate);
+    book.pageCount = req.body.pageCount;
+    book.author = req.body.author;
+    (req.body.cover != null  || req.body.cover !== '') && saveCover(book,req.body.cover)
+    await book.save();
+    res.redirect(`/books/${book.id}`);
+  } catch(err) {
+    if(book != null){
+      renderFormPage(res,book,true,'edit',err.errorMessage)
+    }else{
+      redirect('/')
+    } 
+  }
+})
+
+router.delete('/:id', async (req,res)=>{
+  let book
+  try {
+    book = await Book.findById(req.params.id)
+    await Book.findOneAndRemove(req.params.id);
+    res.redirect(`/books`);
+  } catch (err) {  
+    if(book == null){
+      res.redirect(`/`);
+    }else{
+      res.redirect(`/books/${book.id}`);
+    }
   }
 })
 
@@ -66,9 +123,7 @@ function saveCover(book,coverEncoded){
   }
 }
 
-
-
-async function renderNewPage(res,book,hasError = false){
+async function renderFormPage(res,book,hasError = false, form , errorMessage){
   try {
     const authors = await Author.find({});
 
@@ -77,12 +132,13 @@ async function renderNewPage(res,book,hasError = false){
       book:book
     }
 
-    if(hasError) params.errorMessage = 'Error creating book';
-    res.render('books/new',params);
+    if(hasError) params.errorMessage = errorMessage;
+    res.render(`books/${form}`,params);
 
   } catch (error) {
     res.render('books')
   }
 }
+
 
 module.exports = router

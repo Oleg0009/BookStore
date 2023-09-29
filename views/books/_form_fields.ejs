@@ -3,6 +3,7 @@
   <label for="title">Title</label>
   <input type="text" name="title" value="<%= book.title %>"> 
   <label for="author">Author</label>
+  <% if(authors.length > 0) {%>
   <select name="author" id="">
     <% authors.forEach(author=>{ %>
       <% if(author.id === book.id) {%>
@@ -12,6 +13,7 @@
         <%}%>
     <%})%>
   </select>
+  <% } %>
 </div>
 <div>
   <label for="publishedDate">Publish Date</label>
