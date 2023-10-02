@@ -1,6 +1,9 @@
 <h2 class="page-header">New Book</h2>
-<form method="POST" action="/books">
+<form method="POST" class="book-form" action="/books">
   <%- include('_form_fields') -%>
-  <a href="/books">Cancel</a>
-  <button type="submit">Add book</button>
+
+  <div class="btns">
+    <button class="styled-btn" type="submit">Add book</button>
+    <a  class="styled-btn" href="/books">Cancel</a>
+  </div>
 </form>

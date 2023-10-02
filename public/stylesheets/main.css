@@ -2,3 +2,6 @@
 @import 'shared/variables.css';
 @import 'shared/styleguide.css';
 @import 'shared/header.css';
+@import 'shared/form.css';
+@import 'shared/author.css';
+@import 'shared/book.css';

@@ -1,0 +1,28 @@
+.author-card {
+  display: flex;
+  align-items: center;
+}
+
+.author-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+}
+
+.author-form .btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.author-name {
+  max-width: 170px;
+  width: 100%;
+}
+
+.author-form .btns .styled-btn {
+  margin-left: 0;
+  margin-right: 0;
+}

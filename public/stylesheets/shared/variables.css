@@ -2,6 +2,10 @@
   --color-bg: #780206;
   --color-bg-second: #061161;
   --color-text: #fff;
+  --form-label-size: 16px;
+  --book-cover-width: 200px;
+  --book-cover-width-large: 325px;
+  --book-cover-aspect-ration: 0.75;
 
 }
 

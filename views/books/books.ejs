@@ -1,0 +1,9 @@
+<div>
+  <% books.forEach(book=>{%>
+    <% if(book.coverImagePath) {%>
+      <a href="/books/<%= book.id %>">
+       <img width="200px" height="250px" class="book-cover" src="<%= book.coverImagePath %>" alt="">
+      </a>
+    <% } %>
+  <% }) %>
+</div>

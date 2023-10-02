@@ -6,15 +6,8 @@
 
 body {
   background: #283048;
-  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #859398, #283048);
-  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #859398, #283048);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
 }
 
@@ -23,9 +16,6 @@ a {
   color: white;
   text-decoration: none;
 }
-
-
-
 
 .container {
   max-width: 1200px;
@@ -69,29 +59,11 @@ a {
   text-decoration: none;
 }
 
-.author-card {
-  display: flex;
-  align-items: center;
-}
-
-.author-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
-}
-
-.author-form .btns {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.author-name {
-  max-width: 170px;
+.styled-btn.short {
+  max-width: 150px;
   width: 100%;
 }
 
-.author-form .btns .styled-btn {
-  margin-left: 0;
-  margin-right: 0;
+.filepond--credits {
+  display: none;
 }

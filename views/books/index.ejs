@@ -1,31 +1,24 @@
 <h2 class="page-header">Books all</h2>
 
-<form action="/books" method="GET">
-  <div>
-    <label for="title">Title</label>
-    <input type="text" name="title" value="<%= searchOptions.title %>">
+<form action="/books" class="book-form" method="GET">
+  <div class="form-row">
+    <div class="form-item">
+      <label for="title">Title</label>
+      <input type="text" name="title" value="<%= searchOptions.title %>">
+    </div>
   </div>
-  <div>
-    <label for="publishedAfter">Date before</label>
-    <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>">  
+  <div class="form-row">
+    <div class="form-item">
+      <label for="publishedAfter">Date before</label>
+      <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>">  
+    </div>
+    <div class="form-item">
+      <label for="publishedBefore">Date After</label>
+      <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">  
+    </div>
   </div>
-  <div>
-    <label for="publishedBefore">Date After</label>
-    <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">  
-  </div>
-
-  
-
-  <button type="submit">Search</button>
+  <button  class="styled-btn" type="submit">Search</button>
 </form>
 
 
-<div>
-  <% books.forEach(book=>{%>
-    <% if(book.coverImagePath) {%>
-      <a href="/books/<%= book.id %>">
-      <img width="200px" height="250px" src="<%= book.coverImagePath %>" alt="">
-      </a>
-    <% } %>
-    <% }) %>
-</div>
+<%- include('books',{books:books}) -%>

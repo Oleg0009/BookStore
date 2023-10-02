@@ -9,13 +9,6 @@
 
 <h2>Books by author</h2>
 <% if(booksByAuthor.length > 0) {%>
-<div>
-  <% booksByAuthor.forEach(book=>{%>
-    <% if(book.coverImagePath) {%>
-      <a href="/books/<%= book.id %>">
-        <img width="200px" height="250px" src="<%= book.coverImagePath %>" alt="">
-      </a>
-    <% } %>
-    <% }) %>
-</div>
+  <%- include('../books/books',{books:booksByAuthor}) -%>
 <% } %>
+
