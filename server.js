@@ -9,6 +9,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const cors = require('cors');
 
  
 const router = require('./router/router')
@@ -26,6 +27,7 @@ app.use(methodOverride('_method'))
 
 //Static path for images + styles
 app.use(express.static('public'))
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ limit:"10mb", extended:false }))
 
