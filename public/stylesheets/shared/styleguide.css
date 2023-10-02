@@ -86,6 +86,10 @@ a {
   justify-content: space-between;
 }
 
+.author-name {
+  max-width: 170px;
+  width: 100%;
+}
 
 .author-form .btns .styled-btn {
   margin-left: 0;
