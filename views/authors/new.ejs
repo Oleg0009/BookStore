@@ -1,6 +1,9 @@
-<h2>NEw Author</h2>
-<form method="POST" action="/authors">
+<h2 class="page-header">New Author</h2>
+<form method="POST" class="author-form" action="/authors">
   <%- include('_form_fields') -%>
-  <a href="/authors">Cancel</a>
-  <button type="submit">Add author</button>
+  <div class="btns">
+    <a  class="styled-btn" href="/authors">Cancel</a>
+    <button  class="styled-btn" type="submit">Add author</button>
+  </div>
+
 </form>

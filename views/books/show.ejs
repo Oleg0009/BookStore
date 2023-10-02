@@ -1,11 +1,12 @@
-<h2><%= book.title %></h2>
+<h2 class="page-header"><%= book.title %></h2>
 
-<img width="100px" height="150px" src="<%= book.coverImagePath %>" alt="">
+<img width="200px" height="250px" src="<%= book.coverImagePath %>" alt="">
 
 <% if(book.author !== null) {%>
 <a href="/authors/<%= book.author.id %>">View Author</a>
 <% } %>
 <a href="/books/<%= book.id %>/edit">Edit</a>
+
 <%- include('../partials/deleteForm', { url:`/books/${book.id}` }) -%>
 
 <% if(book.author != null) {%>

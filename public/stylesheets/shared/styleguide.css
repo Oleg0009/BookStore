@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #283048;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #859398, #283048);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #859398, #283048);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+
+
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+.inner-container {
+  margin: 0 2rem;
+}
+
+.page-header {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+
+.styled-btn {
+  margin: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: .5s;
+  background-size: 200% auto;
+  color: var(--color-text);
+  border-radius: 10px;
+  display: block;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #948E99 0%, #2E1437 51%, #948E99 100%);
+}
+
+.styled-btn.red {
+  background-image: linear-gradient(to right, #e53935 0%, #e35d5b 51%, #e53935 100%)
+}
+
+.styled-btn:hover {
+  background-position: right center;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+}
+
+.author-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+}
+
+.author-form .btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.author-form .btns .styled-btn {
+  margin-left: 0;
+  margin-right: 0;
+}

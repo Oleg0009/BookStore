@@ -1,4 +1,4 @@
-<h2>Books all</h2>
+<h2 class="page-header">Books all</h2>
 
 <form action="/books" method="GET">
   <div>
@@ -24,9 +24,8 @@
   <% books.forEach(book=>{%>
     <% if(book.coverImagePath) {%>
       <a href="/books/<%= book.id %>">
-    <img width="100px" height="150px" src="<%= book.coverImagePath %>" alt="">
-  </a>
-
+      <img width="200px" height="250px" src="<%= book.coverImagePath %>" alt="">
+      </a>
     <% } %>
     <% }) %>
 </div>

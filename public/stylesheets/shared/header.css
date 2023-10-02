@@ -1,0 +1,21 @@
+.header-logo {
+  font-size: 40px;
+  font-weight: bold;
+
+}
+
+.header-list {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  padding: 0;
+  text-decoration: none;
+}
+
+
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
