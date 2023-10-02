@@ -101,7 +101,7 @@ router.delete('/:id', async (req,res)=>{
       }
       return;
     }
-    await Author.findOneAndRemove(req.params.id);
+    await Author.findOneAndRemove({ _id: req.params.id } )
     res.redirect(`/authors`);
   } catch (err) {  
     if(author == null){

@@ -103,7 +103,7 @@ router.delete('/:id', async (req,res)=>{
   let book
   try {
     book = await Book.findById(req.params.id)
-    await Book.findOneAndRemove(req.params.id);
+    await Book.findOneAndRemove({ _id: req.params.id } )
     res.redirect(`/books`);
   } catch (err) {  
     if(book == null){
