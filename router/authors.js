@@ -1,4 +1,5 @@
 const express = require('express')
+
 const router = express.Router()
 const Author = require('../models/authors')
 const Book = require('../models/books')
@@ -10,10 +11,21 @@ router.get('/', async (req,res)=>{
   }
   try {
     const authors = await  Author.find(searchOptions)
-    res.render('authors/index',{
-      authors:authors,
-      searchOptions:req.query
-    })
+    res.format({
+      html: () => {
+        // If the client requests HTML, render the HTML content
+        res.render('authors/index', {
+          authors: authors,
+          searchOptions: req.query
+        });
+      },
+      json: () => {
+        // If the client requests JSON, send additional data as JSON
+        res.json({
+          authors: authors
+        });
+      }
+    });
   } catch (error) {
     res.render('/')
   }
