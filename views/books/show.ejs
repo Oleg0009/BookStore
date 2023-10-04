@@ -7,12 +7,12 @@
       <% if(book.author !== null) {%>
         <a class="styled-btn" href="/authors/<%= book.author.id %>">View Author</a>
         <% } %>
-        <% if (locals.isUserLoggedIn == true) { %>
+        <% if (locals.isAdmin == true) { %>
           <a class="styled-btn" href="/books/<%= book.id %>/edit">Edit</a>
         <% }%>
 
     </div>
-    <% if (locals.isUserLoggedIn == true) { %>
+    <% if (locals.isAdmin == true) { %>
       <%- include('../partials/deleteForm', { url:`/books/${book.id}` }) -%>
     <% }%>
   

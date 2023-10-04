@@ -87,6 +87,7 @@ router.put('/:id',async(req,res)=>{
     book.publishedDate=new Date(req.body.publishedDate);
     book.pageCount = req.body.pageCount;
     book.author = req.body.author;
+    
     (req.body.cover != null  || req.body.cover !== '') && saveCover(book,req.body.cover)
     await book.save();
     res.redirect(`/books/${book.id}`);

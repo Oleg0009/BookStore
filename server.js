@@ -17,8 +17,9 @@ const router = require('./router/router')
 const authorRouter = require('./router/authors')
 const bookRouter = require('./router/books')
 const loginRouter = require('./router/login')
-const passport = require('./router/passport')
+const passport = require('./services/passport')
 const logoutRouter = require('./router/logout')
+
 const User = require('./models/user')
 
 //Set engine for Views
@@ -36,12 +37,12 @@ const store = new MongoDBStore({
   uri: process.env.DATABASE_URL,
   collection: 'mySessions'
 })
-// Catch errors
+
 
 app.use(session({
   secret: '1111',
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    maxAge: 1000 * 60 * 60 * 24 * 7 
   },
   store: store,
   resave: true,
@@ -78,20 +79,16 @@ mongoose.connect(process.env.DATABASE_URL)
 const db =mongoose.connection
 db.on('error',error=>console.error(error))
 
-
 const initializeAdminUser = async () => {
   try {
     const adminUser = await User.findOne({ role: 'admin' });
-    console.log('adminUser',adminUser);
     if (!adminUser) {
       const newAdminUser = new User({
         username: 'admin',
         password: 'admin',
         role:'admin' // Change this to a secure password
       });
-
       await newAdminUser.save();
-      
       const admin = await User.findOne({ role: 'admin' });
       console.log('Admin user created.',admin);
     }
@@ -105,11 +102,11 @@ db.once('open',()=>{
   console.log('Coneccted');
 })
 
-app.use((req, res, next) => {
-  // Check if the user is logged in
-  res.locals.isUserLoggedIn = req.isAuthenticated(); // Assuming you're using Passport.js
 
-  // Continue to the next middleware or route handler
+//add global vars for auth
+app.use(async (req, res, next) => {
+  res.locals.isUserLoggedIn = req.isAuthenticated()
+  res.locals.isAdmin =  req.user && req.user.role == 'admin' ? true : false
   next();
 });
 

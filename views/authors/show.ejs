@@ -2,7 +2,7 @@
 
 <div class="author-form">
   <div class="btns">
-    <% if (locals.isUserLoggedIn == true) { %>
+    <% if (locals.isAdmin == true) { %>
       <a  class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
       <%- include('../partials/deleteForm',{url:`/authors/${author.id}`}) -%>
     <% }%>

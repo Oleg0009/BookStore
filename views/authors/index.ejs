@@ -10,8 +10,6 @@
       <button class="styled-btn short" type="submit">Search</button>
     </div>
   </div>
- 
-
 </form>
 
 
@@ -20,16 +18,13 @@
     <div style="width: 100%;">
       <h3 class="author-name"><%= author.name %></h3>
     </div>
-
     <div >
       <a class="styled-btn" href="/authors/<%= author.id %>">View</a>
-      <% if (locals.isUserLoggedIn == true) { %>
+      <% if (locals.isAdmin == true) { %>
         <a class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
         <%- include('../partials/deleteForm', { url:`/authors/${author.id}` }) -%>
       <% }%>
-
     </div>
-
-
   </div>
-  <% }) %>%>
+  <% }) %>
+  %>

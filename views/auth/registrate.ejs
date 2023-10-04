@@ -1,0 +1,20 @@
+<h2 class="page-header login-page-header">Registration</h2>
+<form method="POST" class="login-form" action="/login/new">
+  <div class="form-row">
+    <%- include('_form_fields') -%>
+    <div class="form-item">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+    </div>
+ 
+  </div>
+  <div class="login-btn-wrapper">
+    <button  class="styled-btn" type="submit">Sign up</button>
+  </div>
+  <% if(error != null) {%>
+    <div class="error">
+      <%= error %>
+    </div>
+    <% } %>
+</form>
+  
