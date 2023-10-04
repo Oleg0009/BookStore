@@ -2,8 +2,10 @@
 
 <div class="author-form">
   <div class="btns">
-    <a  class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm',{url:`/authors/${author.id}`}) -%>
+    <% if (locals.isUserLoggedIn == true) { %>
+      <a  class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
+      <%- include('../partials/deleteForm',{url:`/authors/${author.id}`}) -%>
+    <% }%>
   </div>
 </div>
 

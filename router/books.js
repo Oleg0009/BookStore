@@ -6,7 +6,7 @@ const imageMimeTypes = ['image/jpeg','image/png','image/gif']
 
 
 router.get('/', async (req,res)=>{
-
+  console.log('book auth',req.isAuthenticated());
   let searchOptions = {}
   if(req.query.title != null && req.query.title !== '' ){
     searchOptions.title = new RegExp(req.query.title, 'i')

@@ -19,6 +19,7 @@ const ready = () =>{
   FilePond.parse(document.body);
 }
 
+
 if(rootStyles.getPropertyValue('--book-cover-width') != null  && rootStyles.getPropertyValue('--book-cover-width') !== ''){
   ready()
 }else{

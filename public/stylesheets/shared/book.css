@@ -16,3 +16,12 @@
   align-items: center;
   justify-content: flex-end;
 }
+
+.books-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book {
+  margin: 10px;
+}

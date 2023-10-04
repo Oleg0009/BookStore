@@ -1,0 +1,22 @@
+<h2 class="page-header login-page-header">Login</h2>
+<form method="POST" class="login-form" action="/login">
+  <div class="form-row">
+    <div class="form-item">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+    </div>
+    <div class="form-item">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+    </div>
+  </div>
+  <div class="login-btn-wrapper">
+    <button  class="styled-btn" type="submit">Login</button>
+  </div>
+  <% if(error != null) {%>
+  <div class="error">
+    <%= error %>
+  </div>
+  <% } %>
+</form>
+  

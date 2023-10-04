@@ -19,13 +19,15 @@
   <div class="author-card">
     <div style="width: 100%;">
       <h3 class="author-name"><%= author.name %></h3>
-      <h3 class="author-name"><%= author.id %></h3>
     </div>
 
     <div >
       <a class="styled-btn" href="/authors/<%= author.id %>">View</a>
-      <a class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
-      <%- include('../partials/deleteForm', { url:`/authors/${author.id}` }) -%>
+      <% if (locals.isUserLoggedIn == true) { %>
+        <a class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm', { url:`/authors/${author.id}` }) -%>
+      <% }%>
+
     </div>
 
 

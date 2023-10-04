@@ -1,0 +1,38 @@
+.login-block {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  justify-content: flex-end;
+}
+
+.login-btn svg {
+  margin-right: 5px;
+}
+
+.login-form {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login-form .form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form .form-row .form-item {
+  margin: 0;
+}
+
+.login-page-header {
+  text-align: center;
+}
+
+.login-btn-wrapper {
+  margin: 0 auto;
+}

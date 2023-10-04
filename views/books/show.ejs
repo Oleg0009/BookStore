@@ -7,9 +7,15 @@
       <% if(book.author !== null) {%>
         <a class="styled-btn" href="/authors/<%= book.author.id %>">View Author</a>
         <% } %>
-        <a class="styled-btn" href="/books/<%= book.id %>/edit">Edit</a>
+        <% if (locals.isUserLoggedIn == true) { %>
+          <a class="styled-btn" href="/books/<%= book.id %>/edit">Edit</a>
+        <% }%>
+
     </div>
-    <%- include('../partials/deleteForm', { url:`/books/${book.id}` }) -%>
+    <% if (locals.isUserLoggedIn == true) { %>
+      <%- include('../partials/deleteForm', { url:`/books/${book.id}` }) -%>
+    <% }%>
+  
   </div>
 
   <div class="form-item">

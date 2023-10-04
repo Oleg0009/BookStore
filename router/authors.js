@@ -4,7 +4,8 @@ const router = express.Router()
 const Author = require('../models/authors')
 const Book = require('../models/books')
 
-router.get('/', async (req,res)=>{
+router.get('/' , async (req,res)=>{
+  console.log('isAuthenticated',req.isAuthenticated());
   let searchOptions = {}
   if(req.query.name != null && req.query.name !== '' ){
     searchOptions.name = new RegExp(req.query.name,'i')
@@ -29,13 +30,32 @@ router.get('/', async (req,res)=>{
   } catch (error) {
     res.render('/')
   }
-
 })
+function isAuthenticated(req, res, next) {
+  // console.log(res);
+  console.log(req);
+  console.log('auth',req.isAuthenticated());
+  // res.send('auth')
+  if (req.isAuthenticated()) {
+    console.log('success')
+    return next(); // User is authenticated, allow access
+  }
+  // User is not authenticated, handle as needed (e.g., redirect to login)
+  res.render('auth/login',{customErr:'err'}); // Redirect to the login page
+}
 
 
-router.get('/new', (req,res)=>{
+router.get('/new',isAuthenticated, (req,res)=>{
   res.render('authors/new', { author: new Author() })
 })
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next(); // User is authenticated, allow access
+  }
+  // User is not authenticated, handle as needed (e.g., redirect to login)
+  res.redirect('/login'); // Redirect to the login page
+}
 
 
 router.get('/:id', async (req,res)=>{

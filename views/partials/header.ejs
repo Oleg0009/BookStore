@@ -1,19 +1,51 @@
 <header>
+  <div class="login-block">
+    <% if (locals.isUserLoggedIn == false) { %>
+      <a class="login-btn"   href="/login">
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12.4285C2 6.90625 6.47778 2.42847 12 2.42847C17.5222 2.42847 22 6.90625 22 12.4285C22 17.9507 17.5222 22.4285 12 22.4285C6.47778 22.4285 2 17.9507 2 12.4285ZM4.22222 12.4285C4.22222 16.7174 7.71111 20.2062 12 20.2062C16.2889 20.2062 19.7778 16.7174 19.7778 12.4285C19.7778 8.13958 16.2889 4.65069 12 4.65069C7.71111 4.65069 4.22222 8.13958 4.22222 12.4285Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 12.789C13.5941 12.789 14.8865 11.4931 14.8865 9.89452C14.8865 8.29592 13.5941 7 12 7C10.4058 7 9.11345 8.29592 9.11345 9.89452C9.11345 11.4931 10.4058 12.789 12 12.789ZM12 10.4734C12.3188 10.4734 12.5773 10.2142 12.5773 9.89452C12.5773 9.5748 12.3188 9.31561 12 9.31561C11.6811 9.31561 11.4227 9.5748 11.4227 9.89452C11.4227 10.2142 11.6811 10.4734 12 10.4734Z" fill="white"/>
+          <path d="M8.99887 18C9.59952 16.9588 10.7193 16.2625 12 16.2625C13.2806 16.2625 14.4005 16.9588 15.0011 18L17 16.8405C16.0036 15.1132 14.1383 13.9468 12 13.9468C9.86171 13.9468 7.99644 15.1132 7 16.8405L8.99887 18Z" fill="white"/>
+        </svg>          
+        Login
+      </a>
+    <% } else {%>
+      <a class="login-btn" href="/logout">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"  width="24" height="25 version="1.1" id="Capa_1" viewBox="0 0 384.971 384.971" xml:space="preserve">
+          <g>
+            <g id="Sign_Out">
+              <path d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03    C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03    C192.485,366.299,187.095,360.91,180.455,360.91z"/>
+              <path d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279    c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179    c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"/>
+            </g>
+          </g>
+          </svg>Logout</a>
+    <% } %>
+  </div>
   <nav class="header-nav ">
     <a class="header-logo" href="/">My library</a>
     <ul class="header-list">
+      
       <li class="header-link">
         <a  class="styled-btn" href="/authors">All authors</a>
       </li>
-      <li class="header-link">
-        <a class="styled-btn" href="/authors/new">Add author</a>
-      </li>
+
+      <% if (locals.isUserLoggedIn == true) { %>
+        <li class="header-link">
+          <a class="styled-btn" href="/authors/new">Add author</a>
+        </li>
+      <% } %>
+    
       <li class="header-link">
         <a class="styled-btn" href="/books">All books</a>
       </li>
-      <li class="header-link">
-        <a class="styled-btn" href="/books/new">Add book</a>
-      </li>
+      <% if (locals.isUserLoggedIn == true) { %>
+        <li class="header-link">
+          <a class="styled-btn" href="/books/new">Add book</a>
+        </li>
+      <% } %>
     </ul>
   </nav>
 </header>
+
+
+
