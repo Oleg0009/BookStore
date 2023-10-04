@@ -21,7 +21,6 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('serialized');
   done(null, user.id);
 });
 
@@ -34,4 +33,13 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-module.exports = passport
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next(); 
+  }
+  res.render('auth/login',{ error:req.flash('error')[0]}); 
+}
+
+
+module.exports = {passport,isAuthenticated}
+

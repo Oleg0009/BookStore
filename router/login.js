@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const passport = require('../services/passport')
 const User = require('../models/user')
 
-
+const { isAuthenticated,passport } = require('../services/passport')
 
 router.get('/', isAuthenticated, (req, res) => {
   res.redirect('/books');
@@ -50,12 +49,6 @@ router.post('/new', async (req, res, next) => {
 });
 
 
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next(); 
-  }
-  res.render('auth/login',{ error:req.flash('error')[0]}); 
-}
-
 
 module.exports = router
+

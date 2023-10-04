@@ -17,7 +17,7 @@ const router = require('./router/router')
 const authorRouter = require('./router/authors')
 const bookRouter = require('./router/books')
 const loginRouter = require('./router/login')
-const passport = require('./services/passport')
+const { passport } = require('./services/passport')
 const logoutRouter = require('./router/logout')
 
 const User = require('./models/user')

@@ -1,11 +1,12 @@
 const express = require('express')
+const { isAuthenticated } = require('../services/passport')
 
 const router = express.Router()
 const Author = require('../models/authors')
 const Book = require('../models/books')
+const imageMimeTypes = ['image/jpeg','image/png','image/gif']
 
 router.get('/' , async (req,res)=>{
-  console.log('isAuthenticated',req.isAuthenticated());
   let searchOptions = {}
   if(req.query.name != null && req.query.name !== '' ){
     searchOptions.name = new RegExp(req.query.name,'i')
@@ -31,35 +32,15 @@ router.get('/' , async (req,res)=>{
     res.render('/')
   }
 })
-function isAuthenticated(req, res, next) {
-  // console.log(res);
-  console.log(req);
-  console.log('auth',req.isAuthenticated());
-  // res.send('auth')
-  if (req.isAuthenticated()) {
-    console.log('success')
-    return next(); // User is authenticated, allow access
-  }
-  // User is not authenticated, handle as needed (e.g., redirect to login)
-  res.render('auth/login',{customErr:'err'}); // Redirect to the login page
-}
 
 
 router.get('/new',isAuthenticated, (req,res)=>{
   res.render('authors/new', { author: new Author() })
 })
 
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next(); // User is authenticated, allow access
-  }
-  // User is not authenticated, handle as needed (e.g., redirect to login)
-  res.redirect('/login'); // Redirect to the login page
-}
 
 
 router.get('/:id', async (req,res)=>{
-
   try{
     const author = await Author.findById(req.params.id)
     const booksByAuthor = await Book.find({ author: author.id}).limit(6).exec()
@@ -72,9 +53,11 @@ router.get('/:id', async (req,res)=>{
 
 
 router.post('/',async (req,res)=>{
-  const author = new Author({
-    name:req.body.name
-  })
+  let author = new Author({
+    name:req.body.name,
+    overview:req.body.overview,
+  });
+  saveCover(author,req.body.cover)
   try {
     const newAuthor = await author.save();
     // Author was successfully created, redirect to the list of authors
@@ -93,7 +76,6 @@ router.post('/',async (req,res)=>{
 router.get('/:id/edit',async (req,res)=>{
   try{
     const author = await Author.findById(req.params.id)
-    console.log(author)
     res.render('authors/edit', { author: author })
   }
   catch{
@@ -144,5 +126,16 @@ router.delete('/:id', async (req,res)=>{
    
   }
 })
+
+
+function saveCover(author,coverEncoded){
+  if(coverEncoded == null) return;
+  const cover = JSON.parse(coverEncoded)
+
+  if(cover !== null && imageMimeTypes.includes(cover.type)){
+    author.coverImage = new Buffer.from(cover.data,'base64')
+    author.coverImageType = cover.type
+  }
+}
 
 module.exports = router

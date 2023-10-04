@@ -4,12 +4,20 @@ const authorsSchema = new mongoose.Schema({
   name:{
     type:String, 
     required:true
-  }
+  },
+  overview:{
+    type:String, 
+  },
+  coverImage:{
+    type:Buffer,
+  },
+  coverImageType:{
+    type:String,
+  },
 })
 
 
 authorsSchema.pre('findOneAndRemove', { document: true }, async function(next){
-  console.log('preremove')
   Book.find({author:this.id},(err,books)=>{
     if(err){
       next(err)
@@ -20,4 +28,12 @@ authorsSchema.pre('findOneAndRemove', { document: true }, async function(next){
     }
   })
 })
+
+authorsSchema.virtual('coverImagePath').get(function(){
+  if(this.coverImage != null && this.coverImageType != null){
+    return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
+  }
+})
+
+
 module.exports = mongoose.model("Author",authorsSchema) 

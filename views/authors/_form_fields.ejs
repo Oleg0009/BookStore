@@ -6,3 +6,14 @@
     <input type="text" name="name" value="<%= author.name %>"> 
   </div>
 </div>
+
+<div class="form-row">
+  <div class="form-item no-grow">
+    <label for="cover">Author image</label>
+    <input type="file" name="cover" class="book-cover filepond">
+  </div>
+  <div class="form-item">
+    <label for="description">About author</label>
+    <textarea  name="description"><%= author.overview %></textarea>
+  </div>
+</div>

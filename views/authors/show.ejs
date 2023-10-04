@@ -1,5 +1,10 @@
 <h2 class="page-header"><%= author.name %></h2>
 
+<% if(author.coverImagePath) {%>
+  <a class="book" href="/authors/<%= author.id %>">
+   <img width="250px" height="250px" class="book-cover" src="<%= author.coverImagePath %>" alt="">
+  </a>
+<% } %>
 <div class="author-form">
   <div class="btns">
     <% if (locals.isAdmin == true) { %>
