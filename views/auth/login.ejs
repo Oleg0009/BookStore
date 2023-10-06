@@ -1,15 +1,11 @@
 <h2 class="page-header login-page-header">Login</h2>
 <form method="POST" class="login-form" action="/login">
   <div class="form-row">
-    <%- include('_form-fields') -%>
+    <%- include('_form_fields') -%>
   </div>
   <div class="login-btn-wrapper">
     <button  class="styled-btn" type="submit">Login</button>
   </div>
-  <% if(error != null) {%>
-  <div class="error">
-    <%= error %>
-  </div>
-  <% } %>
+
 </form>
   
