@@ -26,6 +26,8 @@ router.get('/', async (req,res)=>{
     const page = req.query.page || 1; // Get the requested page from the query parameters
     const itemsPerPage = 4; // Define the number of items to display per page
     const skip = (page - 1) * itemsPerPage;
+    console.log('skip',skip)
+    console.log('page',page)
     const books = await Book.find(searchOptions).skip(skip).limit(itemsPerPage).exec();
     const totalItems = await Book.countDocuments(); // Get the total number of items
     const totalPages = Math.ceil(totalItems / itemsPerPage);
