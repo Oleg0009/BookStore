@@ -1,6 +1,8 @@
 .author-card {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .author-form {
@@ -18,7 +20,7 @@
 
 
 .author-name {
-  max-width: 170px;
+  text-align: center;
   width: 100%;
 }
 
@@ -29,4 +31,14 @@
 
 .author-form .form-row {
   flex-wrap: nowrap;
+}
+
+
+.authors-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.author-btns {
+  display: flex;
 }

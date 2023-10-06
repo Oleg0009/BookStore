@@ -13,18 +13,22 @@
 </form>
 
 
-<% authors.forEach(author=>{%>
-  <div class="author-card">
-    <div style="width: 100%;">
-      <h3 class="author-name"><%= author.name %></h3>
+<div class="authors-grid">
+  <% authors.forEach(author=>{%>
+    <div class="author-card">
+      <div style="width: 100%;">
+        <h3 class="author-name"><%= author.name %></h3>
+      </div>
+      <a class="book" href="/authors/<%= author.id %>">
+        <img width="200px" height="250px" class="book-cover" src="<%= author.coverImagePath %>" alt="">
+       </a>
+      <div class="author-btns">
+        <a class="styled-btn" href="/authors/<%= author.id %>">View</a>
+        <% if (locals.isAdmin == true) { %>
+          <a class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
+          <%- include('../partials/deleteForm', { url:`/authors/${author.id}` }) -%>
+        <% }%>
+      </div>
     </div>
-    <div >
-      <a class="styled-btn" href="/authors/<%= author.id %>">View</a>
-      <% if (locals.isAdmin == true) { %>
-        <a class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
-        <%- include('../partials/deleteForm', { url:`/authors/${author.id}` }) -%>
-      <% }%>
-    </div>
-  </div>
-  <% }) %>
-  %>
+    <% }) %>
+</div>
