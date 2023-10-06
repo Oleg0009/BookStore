@@ -36,8 +36,6 @@ router.get('/', async (req,res)=>{
       searchOptions:req.query,
       currentPage: req.query.page || 1,
       totalPages:totalPages,
-      itemsPerPage:itemsPerPage,
-      skip:skip,
     })
   }catch{
     res.redirect('authors')
