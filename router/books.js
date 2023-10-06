@@ -21,11 +21,19 @@ router.get('/', async (req,res)=>{
     };
   }
 
+
   try{
-    const books = await Book.find(searchOptions).exec();
+    const page = req.query.page || 1; // Get the requested page from the query parameters
+    const itemsPerPage = 4; // Define the number of items to display per page
+    const skip = (page - 1) * itemsPerPage;
+    const books = await Book.find(searchOptions).skip(skip).limit(itemsPerPage).exec();
+    const totalItems = await Book.countDocuments(); // Get the total number of items
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
     res.render('books/index',{
       books:books,
-      searchOptions:req.query
+      searchOptions:req.query,
+      currentPage: req.query.page || 1,
+      totalPages:totalPages
     })
   }catch{
     res.redirect('authors')

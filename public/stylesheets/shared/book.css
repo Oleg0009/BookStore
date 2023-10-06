@@ -26,3 +26,18 @@
 .book {
   margin: 10px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  margin: 10px;
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+.pagination a.active {
+  text-decoration: none;
+}
