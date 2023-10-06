@@ -2,7 +2,7 @@
 
 <% if(author.coverImagePath) {%>
   <a class="book" href="/authors/<%= author.id %>">
-   <img width="200px" height="250px" class="book-cover" src="<%= author.coverImagePath %>" alt="">
+   <img width="200px" height="250px" class="book-cover lazy" data-src="<%= author.coverImagePath %>" alt="" loading="lazy">
   </a>
 <% } %>
 <div class="author-form">

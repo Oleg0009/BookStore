@@ -1,6 +1,7 @@
 .form-item .book-cover {
   width: var(--book-cover-width);
   height: calc(var(--book-cover-width) / var(--book-cover-aspect-ration));
+  object-fit: cover;
 }
 
 .form-item .book-cover-large {
