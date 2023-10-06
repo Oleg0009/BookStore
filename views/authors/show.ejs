@@ -16,6 +16,6 @@
 
 <h2>Books by author</h2>
 <% if(booksByAuthor.length > 0) {%>
-  <%- include('../books/books',{books:booksByAuthor}) -%>
+  <%- include('../books/books',{books:booksByAuthor, pagination:false}) -%>
 <% } %>
 
