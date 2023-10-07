@@ -1,17 +1,27 @@
 <h2 class="page-header"><%= author.name %></h2>
 
-<% if(author.coverImagePath) {%>
-  <a class="book" href="/authors/<%= author.id %>">
-   <img width="200px" height="250px" class="book-cover lazy" data-src="<%= author.coverImagePath %>" alt="" loading="lazy">
-  </a>
-<% } %>
-<div class="author-form">
-  <div class="btns">
-    <% if (locals.isAdmin == true) { %>
-      <a  class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
-      <%- include('../partials/deleteForm',{url:`/authors/${author.id}`}) -%>
-    <% }%>
+<div class="author-detail">
+  <div class="side">
+    <% if(author.coverImagePath) {%>
+      <a class="book" href="/authors/<%= author.id %>">
+       <img width="200px" height="250px" class="book-cover lazy" data-src="<%= author.coverImagePath %>" alt="" loading="lazy">
+      </a>
+    <% } %>
+    <div class="author-form">
+      <div class="btns">
+        <% if (locals.isAdmin == true) { %>
+          <a  class="styled-btn" href="/authors/<%= author.id %>/edit">Edit</a>
+          <%- include('../partials/deleteForm',{url:`/authors/${author.id}`}) -%>
+        <% }%>
+      </div>
+    </div>
   </div>
+  <div class="info">
+    <p>
+      <%= author.overview  %>
+    </p>
+  </div>
+
 </div>
 
 <h2>Books by author</h2>

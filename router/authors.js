@@ -44,6 +44,7 @@ router.get('/:id', async (req,res)=>{
   try{
     const author = await Author.findById(req.params.id)
     const booksByAuthor = await Book.find({ author: author.id}).limit(6).exec()
+    console.log(author.overview);
     res.render('authors/show', { author: author,booksByAuthor:booksByAuthor })
   }
   catch{
@@ -92,7 +93,7 @@ router.put('/:id',async(req,res)=>{
     author.overview = req.body.overview;
 
     (req.body.cover != null  || req.body.cover !== '') && saveCover(author,req.body.cover);
-    
+
     await author.save();
     res.redirect(`/authors/${author.id}`);
   } catch (err) {
