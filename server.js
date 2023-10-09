@@ -67,7 +67,7 @@ const store = new MongoDBStore({
 
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true, // Optional, for a GraphiQL interface
+  graphiql: false, // Optional, for a GraphiQL interface
 }));
 
 
