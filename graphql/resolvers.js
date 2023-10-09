@@ -1,3 +1,5 @@
+const Author = require('../models/authors');
+
 const resolvers = {
   Query: {
     author: (parent, args) => {
@@ -8,3 +10,5 @@ const resolvers = {
     },
   },
 };
+
+module.export = resolvers

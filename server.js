@@ -1,26 +1,52 @@
-if(process.env.NODE_ENV !== 'production'){
-  require('dotenv').config()
-}
+
 const { graphqlHTTP } = require('express-graphql');
+
 const session = require('express-session');
 const express = require('express')
-const app = express()
 const expressLayouts = require('express-ejs-layouts')
+
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const cors = require('cors');
 const flash = require('connect-flash');
+const { PubSub } = require('graphql-subscriptions');
+const { ApolloServer } = require('apollo-server-express');
+const { SubscriptionServer } = require('subscriptions-transport-ws');
 
- 
+const { execute, subscribe } = require('graphql');
 const router = require('./router/router')
 const authorRouter = require('./router/authors')
 const bookRouter = require('./router/books')
 const loginRouter = require('./router/login')
 const { passport } = require('./services/passport')
 const logoutRouter = require('./router/logout')
-const schema = require('./graphql/schema'); 
+
 const User = require('./models/user')
+const pubsub = new PubSub();
+
+
+
+const app = express()
+
+
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
+
+
+const types = require('./graphql/graphql-types');
+const resolvers = require('./graphql/resolvers');
+const schema = require('./graphql/schema'); 
+
+
+const apolloServer = new ApolloServer({
+  typeDefs: types,
+  resolvers,
+  context: ({ req, res }) => ({ req, res, pubsub }),
+});
+
+
 
 //Set engine for Views
 app.set('view engine', 'ejs')
@@ -125,5 +151,24 @@ app.use('/login',loginRouter)
 app.use('/logout',logoutRouter)
 
 
-//listen server
-app.listen(process.env.PORT || 3000)
+
+async function startApolloServer() {
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
+}
+
+
+startApolloServer().then(() => {
+  // Middleware has been applied, now start the server
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+
+  // Create a SubscriptionServer for WebSocket subscriptions
+  SubscriptionServer.create(
+    { execute, subscribe, schema: apolloServer.schema },
+    { server: app, path: apolloServer.graphqlPath }
+  );
+});
+
