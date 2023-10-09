@@ -1,7 +1,7 @@
 if(process.env.NODE_ENV !== 'production'){
   require('dotenv').config()
 }
-
+const { graphqlHTTP } = require('express-graphql');
 const session = require('express-session');
 const express = require('express')
 const app = express()
@@ -19,7 +19,7 @@ const bookRouter = require('./router/books')
 const loginRouter = require('./router/login')
 const { passport } = require('./services/passport')
 const logoutRouter = require('./router/logout')
-
+const schema = require('./graphql/schema'); 
 const User = require('./models/user')
 
 //Set engine for Views
@@ -37,6 +37,12 @@ const store = new MongoDBStore({
   uri: process.env.DATABASE_URL,
   collection: 'mySessions'
 })
+
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true, // Optional, for a GraphiQL interface
+}));
 
 
 app.use(session({
