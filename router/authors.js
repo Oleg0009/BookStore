@@ -6,6 +6,8 @@ const Author = require('../models/authors')
 const Book = require('../models/books')
 const imageMimeTypes = ['image/jpeg','image/png','image/gif']
 
+const WebSocketServer = require('../websocket-server'); 
+
 router.get('/' , async (req,res)=>{
   let searchOptions = {}
   if(req.query.name != null && req.query.name !== '' ){
@@ -62,6 +64,15 @@ router.post('/',async (req,res)=>{
   try {
     const newAuthor = await author.save();
     // Author was successfully created, redirect to the list of authors
+    console.log(WebSocketServer.clients);
+    WebSocketServer.clients.forEach((client) => {
+      const message = JSON.stringify({
+        type: 'authorAdded',
+        payload: newAuthor,
+      });
+      client.send(message);
+    });
+
     res.redirect(`/authors/${newAuthor.id}`);
   } catch (err) {
     res.render('authors/new',{

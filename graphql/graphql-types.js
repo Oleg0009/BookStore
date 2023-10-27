@@ -19,6 +19,13 @@ const authorTypeDefs = gql`
     updateAuthor(id: ID!, name: String!, overview: String, coverImage: String, coverImageType: String): Author
     deleteAuthor(id: ID!): Author
   }
+  type AuthorAdded {
+    author: Author
+  }
+
+  type Subscription {
+    authorAdded: AuthorAdded
+  }
 `;
 
 module.exports = authorTypeDefs;

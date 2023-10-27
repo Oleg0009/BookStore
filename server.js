@@ -19,12 +19,12 @@ const router = require('./router/router')
 const authorRouter = require('./router/authors')
 const bookRouter = require('./router/books')
 const loginRouter = require('./router/login')
+const emailRouter = require('./router/email')
 const { passport } = require('./services/passport')
 const logoutRouter = require('./router/logout')
 
 const User = require('./models/user')
 const pubsub = new PubSub();
-
 
 
 const app = express()
@@ -39,6 +39,11 @@ const types = require('./graphql/graphql-types');
 const resolvers = require('./graphql/resolvers');
 const schema = require('./graphql/schema'); 
 
+app.use(cors({
+  origin: 'http://localhost:3001',
+  methods: 'POST', // Allow only the POST method
+  credentials: false, // Allow cookies to be sent in cross-origin requests
+}));
 
 const apolloServer = new ApolloServer({
   typeDefs: types,
@@ -98,9 +103,13 @@ app.use((req, res, next) => {
 
 //Static path for images + styles
 app.use(express.static('public'))
-app.use(cors());
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(bodyParser.json());
 
 
 app.use(bodyParser.urlencoded({ limit:"10mb", extended:false }))
@@ -149,12 +158,13 @@ app.use('/authors',authorRouter)
 app.use('/books',bookRouter);
 app.use('/login',loginRouter)
 app.use('/logout',logoutRouter)
+app.use('/email',emailRouter)
 
 
 
 async function startApolloServer() {
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, path: '/graphql' });
 }
 
 
@@ -172,3 +182,4 @@ startApolloServer().then(() => {
   );
 });
 
+require('./websocket-server'); 

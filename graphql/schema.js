@@ -20,6 +20,8 @@ const AuthorType = new GraphQLObjectType({
 
 
 
+
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -41,7 +43,21 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const RootSubscription = new GraphQLObjectType({
+  name: 'Subscription',
+  fields: {
+    authorAdded: {
+      type: AuthorType, // The type of data being sent to clients when a new author is added
+      resolve: (payload) => {
+        
+        return payload
+      }, // The resolver to extract the author data
+      subscribe: () => pubsub.asyncIterator(['AUTHOR_ADDED']), // Subscription event name
+    },
+  },
+});
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  subscription: RootSubscription,
 });
