@@ -17,7 +17,8 @@ router.post('/send-email', (req, res) => {
     from: email, // your email
     to: 'olegstatkevychb@gmail.com', // recipient's email
     subject: 'New Email from Your Website',
-    text: `Name: ${surname + '' + name }\n
+    text: `
+    Name: ${surname + ' ' + name }\n
     Email: ${email}\n
     Message: ${message}`,
   };
