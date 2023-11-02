@@ -39,11 +39,16 @@ const types = require('./graphql/graphql-types');
 const resolvers = require('./graphql/resolvers');
 const schema = require('./graphql/schema'); 
 
-app.use(cors({
-  origin: 'http://localhost:3001',
+const corsOptions = {
+  origin: [
+    'http://localhost:3001',
+    'https://own-landing-git-develop-ioms-projects.vercel.app',
+    'https://own-landing.vercel.app',
+    'https://own-landing-git-main-ioms-projects.vercel.app',
+  ],
   methods: 'POST', // Allow only the POST method
   credentials: false, // Allow cookies to be sent in cross-origin requests
-}));
+};
 
 const apolloServer = new ApolloServer({
   typeDefs: types,
