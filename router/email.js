@@ -11,14 +11,14 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post('/send-email', (req, res) => {
-  const { email, name, surname, message } = req.body;
+  const { email, first_name, last_name, message } = req.body;
   // Create email data
   const mailOptions = {
     from: email, // your email
     to: 'iom.creators.ua@gmail.com', // recipient's email
     subject: 'New Email from Your Website',
     text: `
-    Name: ${surname + ' ' + name }\n
+    Name: ${last_name + ' ' + first_name }\n
     Email: ${email}\n
     Message: ${message}`,
   };
