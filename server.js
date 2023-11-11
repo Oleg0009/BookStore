@@ -43,8 +43,6 @@ const corsOptions = {
   origin: [
     'http://localhost:3001',
     'https://own-landing-git-develop-ioms-projects.vercel.app',
-    'https://own-landing-git-develop-ioms-projects.vercel.app/',
-    'https://own-landing-git-develop-ioms-projects.vercel.app/en',
     'https://own-landing.vercel.app',
     'https://own-landing-git-main-ioms-projects.vercel.app',
   ],

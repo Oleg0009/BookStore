@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'Gmail', // e.g., 'Gmail', 'Outlook', etc.
   auth: {
-    user: 'olegstatkevychb@gmail.com', // your email
-    pass: 'hnjj hevf gard hblz', // your email password
+    user: 'iom.creators.ua@gmail.com', // your email
+    pass: 'wavo dqbd bden rpcv', // your email password
   },
 });
 
@@ -15,7 +15,7 @@ router.post('/send-email', (req, res) => {
   // Create email data
   const mailOptions = {
     from: email, // your email
-    to: 'olegstatkevychb@gmail.com', // recipient's email
+    to: 'iom.creators.ua@gmail.com', // recipient's email
     subject: 'New Email from Your Website',
     text: `
     Name: ${surname + ' ' + name }\n
